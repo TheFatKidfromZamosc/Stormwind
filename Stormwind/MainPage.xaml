@@ -1,0 +1,42 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Stormwind.MainPage">
+
+	<ScrollView>
+		<VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+			<DatePicker
+                x:Name="dpData"
+                MinimumDate="2003-02-01"
+                />
+			<Entry
+                    x:Name="Waluta1"
+					Text=""
+				/>
+			<Button
+                x:Name="Ameryka"
+                Text="Wyswietl Walute"
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="Bcurrency1"
+                HorizontalOptions="Fill"
+                />
+			<Label x:Name="textCurrency1" Text=""></Label>
+
+			<Entry
+                    x:Name="Waluta2"
+					Text=""
+				/>
+			
+			<Button
+     x:Name="JanPawelSobieski3"
+     Text="Wyswietl Walute"
+     SemanticProperties.Hint="Counts the number of times you click"
+     Clicked="Bcurrency2"
+     HorizontalOptions="Fill"
+     />
+			<Label x:Name="textCurrency2" Text=""></Label>
+		</VerticalStackLayout>
+	</ScrollView>
+
+</ContentPage>
