@@ -2,6 +2,8 @@
 using System.Net;
 using System.Text.Json;
 using System.Data;
+using Microsoft.Maui.Controls.Internals;
+using Microsoft.Maui.Controls;
 namespace Stormwind
 {
     public partial class MainPage : ContentPage
@@ -35,9 +37,15 @@ namespace Stormwind
         private void Bcurrency1(object sender, EventArgs e)
         {
             string data = dpData.Date.ToString("yyyy-MM-dd");
-            string cur1 = Waluta1.Text;
+            int index = wybierzWalute.SelectedIndex;
+            string cur1 = "";
+            if (index != -1)
+            {
+                cur1 = (string)wybierzWalute.ItemsSource[index];
+            }
+
             string json;
-            string url1 = "https://api.nbp.pl/api/exchangerates/rates/c/"+cur1+ "/" + data + "/?format=json";
+            string url1 = "https://api.nbp.pl/api/exchangerates/rates/c/" + cur1 + "/" + data + "/?format=json";
 
 
             using (var webClient = new WebClient())
@@ -55,28 +63,6 @@ namespace Stormwind
 
         }
 
-        private void Bcurrency2(object sender, EventArgs e)
-        {
-            string data = dpData.Date.ToString("yyyy-MM-dd");
-            string cur2 = Waluta2.Text;
-            string json;
-            string url2 = "https://api.nbp.pl/api/exchangerates/rates/c/"+cur2 +"/" + data + "/?format=json";
-
-
-            using (var webClient = new WebClient())
-            {
-                json = webClient.DownloadString(url2);
-            }
-
-            Currency c = JsonSerializer.Deserialize<Currency>(json);
-            string s = $"nazwa waluty : {c.currency}\n";
-            s += $"kod waluty {c.code} \n";
-            s += $"Data : {c.rates[0].effectiveDate} \n";
-            s += $"Cena skupu : {c.rates[0].bid} \n";
-            s += $"Cena sprzedazy : {c.rates[0].ask} \n ";
-            textCurrency2.Text = s;
-
-        }
     }
 
 }

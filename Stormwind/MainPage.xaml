@@ -10,33 +10,28 @@
                 x:Name="dpData"
                 MinimumDate="2003-02-01"
                 />
-			<Entry
-                    x:Name="Waluta1"
-					Text=""
-				/>
-			<Button
+            <Picker
+                x:Name="wybierzWalute"
+                   Title="Wybierz Walute">
+                <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                         <x:String>USD</x:String>
+                        <x:String>EUR</x:String>
+                        <x:String>CHF</x:String>
+                        <x:String>GBP</x:String>
+                        <x:String>100 JPY</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Button
                 x:Name="Ameryka"
                 Text="Wyswietl Walute"
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="Bcurrency1"
                 HorizontalOptions="Fill"
                 />
-			<Label x:Name="textCurrency1" Text=""></Label>
-
-			<Entry
-                    x:Name="Waluta2"
-					Text=""
-				/>
-			
-			<Button
-     x:Name="JanPawelSobieski3"
-     Text="Wyswietl Walute"
-     SemanticProperties.Hint="Counts the number of times you click"
-     Clicked="Bcurrency2"
-     HorizontalOptions="Fill"
-     />
-			<Label x:Name="textCurrency2" Text=""></Label>
-		</VerticalStackLayout>
+            <Label x:Name="textCurrency1" Text=""></Label>
+        </VerticalStackLayout>
 	</ScrollView>
 
 </ContentPage>
