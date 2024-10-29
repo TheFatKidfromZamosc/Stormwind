@@ -3,7 +3,7 @@
              x:Class="Stormwind.MainPage">
 
 	<ScrollView>
-		<VerticalStackLayout
+        <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
 			<DatePicker
@@ -19,7 +19,6 @@
                         <x:String>EUR</x:String>
                         <x:String>CHF</x:String>
                         <x:String>GBP</x:String>
-                        <x:String>100 JPY</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
@@ -30,8 +29,12 @@
                 Clicked="Bcurrency1"
                 HorizontalOptions="Fill"
                 />
-            <Label x:Name="textCurrency1" Text=""></Label>
+            <HorizontalStackLayout>
+                <Label Text="" x:Name="textCurrency1"/>
+                <Image x:Name="strzala" MaximumWidthRequest="100" MaximumHeightRequest="100"/>
+            </HorizontalStackLayout>
         </VerticalStackLayout>
+        
 	</ScrollView>
 
 </ContentPage>

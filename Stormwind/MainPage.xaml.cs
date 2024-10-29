@@ -4,6 +4,8 @@ using System.Text.Json;
 using System.Data;
 using Microsoft.Maui.Controls.Internals;
 using Microsoft.Maui.Controls;
+using Windows.Globalization;
+using Windows.Networking.ServiceDiscovery.Dnssd;
 namespace Stormwind
 {
     public partial class MainPage : ContentPage
@@ -61,6 +63,28 @@ namespace Stormwind
             s += $"Cena sprzedazy : {c.rates[0].ask} \n ";
             textCurrency1.Text = s;
 
+
+
+
+             string  days = dpData.Date.AddDays(-1).ToString("yyyy-MM-dd");
+            string json1;
+           
+            string url2 = "https://api.nbp.pl/api/exchangerates/rates/c/" + cur1 + "/" + days + "/?format=json";
+           
+            using (var webClient = new WebClient())
+            {
+                json1 = webClient.DownloadString(url2);
+            }
+                
+            Currency y = JsonSerializer.Deserialize<Currency>(json1);
+            if (c.rates[0].ask > y.rates[0].ask)
+            {
+                strzala.Source = "strzalaup.png";
+            }
+            else
+            {
+                strzala.Source = "strzaladown.png";
+            }
         }
 
     }
