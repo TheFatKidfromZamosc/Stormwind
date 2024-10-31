@@ -6,12 +6,27 @@ using Microsoft.Maui.Controls.Internals;
 using Microsoft.Maui.Controls;
 using Windows.Globalization;
 using Windows.Networking.ServiceDiscovery.Dnssd;
+
+
+
+
+
 namespace Stormwind
 {
     public partial class MainPage : ContentPage
     {
 
 
+/*********************
+ * Klasa Currency 
+ * przetrzymuje informacje o walucie
+ * np jej kod, nazwę i tworzy liste podklasy Rate
+ * parametry wejściowe : w tym przypadku pobiera informacje z bazy danych NBP o walucie
+ * parametry wyjściowe : wszystkie informacje o walucie 
+ * autor : klasa Xaml
+ * 
+ * 
+ ********************/
         public class Currency
         {
             public string? table { get; set; }
@@ -19,6 +34,16 @@ namespace Stormwind
             public string? code { get; set; }
             public IList<Rate> rates { get; set; }
         }
+        /**************
+         * Klasa Rate
+         * przetrzymuje informacje o walucie
+         * np jej cene sprzedarzy i zakupu
+         * parametry wejściowe : w tym przypadku pobiera informacje z bazy danych NBP o walucie
+         * parametry wyjściowe : cena sprzedarzy i zakupu waluty
+         * autor : klasa XAML
+         * 
+         * 
+        ***************/
         public class Rate
         {
             public string? no { get; set; }
@@ -27,15 +52,38 @@ namespace Stormwind
             public double? ask { get; set; }
 
         }
-
+        /**********
+         * Main Page i initializeComponent 
+         * są klasami xaml bez których 
+         * program by nie działał
+         ************/
         public MainPage()
         {
             InitializeComponent();
+            
+            /*
+             * dpData jest to nazwa kalendarza który umożliwia 
+             * wybranie daty przez użytkownika  
+             * poprzez to może wybrać dzień z którego będą podane mu informacje na temat waluty
+             * Maksymalny dzień do wybrania jest dzisiaj bo nie potrafimy podróżować w czasie 
+             */
             DateTime dzis = DateTime.Now;
             dpData.MaximumDate = dzis;
 
         }
-
+        /*
+         * Bcurrency1  
+         * Funkcja wywoływana przez kliknięcie przycisku 
+         * jest to funkcja która kompiluje w sobie całe działanie programu 
+         * pobiera date, wybraną waluę 
+         * wyłuskuje z bazy danych nbp wszystkie informacje na jej temat
+         * które następnie przekazuje do stringa który następnie jest przesyłany 
+         * do jednego z elementów odpowiadających za wyświetlenie tych danych 
+         * ponadto porównuję cene skupu z poprzedniego dnia
+         * i wyświetla odpowiadający im obraz 
+         * jeżeli cena jest większa wyświatlana jest strzała w górę
+         * jeżeli cena jest mniejsza wyświatlana jest strzała w dół
+         */
         private void Bcurrency1(object sender, EventArgs e)
         {
             string data = dpData.Date.ToString("yyyy-MM-dd");

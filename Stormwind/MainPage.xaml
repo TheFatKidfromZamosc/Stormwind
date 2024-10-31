@@ -6,6 +6,9 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
+            
+            
+            
 			<DatePicker
                 x:Name="dpData"
                 MinimumDate="2003-02-01"
@@ -31,7 +34,7 @@
                 />
             <HorizontalStackLayout>
                 <Label Text="" x:Name="textCurrency1"/>
-                <Image x:Name="strzala" MaximumWidthRequest="100" MaximumHeightRequest="100"/>
+                <Image x:Name="strzala" MaximumWidthRequest="100" MaximumHeightRequest="100" />
             </HorizontalStackLayout>
         </VerticalStackLayout>
         
